@@ -65,8 +65,8 @@ function undoLastFileUpload() {
 The "shift" method
 
 1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
-    The shift method shifts the array to the left so to speak.  That means the left most element (the element in the index-zero location) will no longer be
-    a part of the array. The index-one position element will now be in index-zero, and the index-two element will be in the index-one location, and so forth.
+    The shift method has no parameters. The shift method shifts the array to the left so to speak.  That means the left most element (the element in the index-zero location) 
+    will no longer be a part of the array. The index-one position element will now be in index-zero, and the index-two element will be in the index-one location, and so forth.
     [a, b, c, d] becomes [b, c, d] after the shift.
 
 2. Does it edit the current array?
@@ -95,3 +95,35 @@ function addPersonToWaitingList(name, phoneNumber, email) {
 function serveNextPersonFromWaitingList() {
     return waitingList.shift();
 }
+
+
+/*
+
+The "unshift" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The unshift method adds an element or multiple elements to the beginning of an array. This method takes any number of elements to add to the front of the 
+    array as parameters.
+
+2. Does it edit the current array?
+    YES, the current array is editted.
+
+3. What does it return?
+    The unshift method returns the new length of the array.
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    I might have a list of employees in a company, and I want to maintain the list in such a way, so that
+    the employees who have been at the company the longest have the largest indices in the array, by using the
+    unshift method, I can add new employees giving them the smallest index in the array while maintaining my
+    ording of the employee array by time with the company.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var employees = ["Cody", "Kim", "Eric"];
+
+function addNewEmployee(name) {
+    employees.unshift(name);
+}
+addNewEmployee("Tracy");
