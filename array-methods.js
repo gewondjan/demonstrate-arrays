@@ -212,25 +212,154 @@ console.log("Post-Sort: " + booksInMyLibrary.sort());
 The "concat" method
 
 1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
-    The sort method sorts the elements of the array.
-    You can use this method with no parameters: In which case, the sort method sorts the elements of the array in alphabetical
-    order (this includes numbers, numbers will be sorted as if they are strings of numbers as in 1, 5, 29 sorted as 1, 29, 5). 
-    You can use this method with a function parameter which teaches the sort method how to sort.  This function takes two parameters which are then used to
-    show how the list shoud be sorted.  
-    If the internal function returns a number less than 0, the item comes before the next item.
-    If the internal function returns a number greater than 0, the item comes after the next item.
-    If the interal function returns a '0', the item is equal to the next item.
+    The concat method concatenates whatever the parameters are to the end of the array.  The parameters can be values and/or other arrays. When other arrays are
+    concatenated, they are NOT added to the new array at one location (as an array of arrays), but the values of the parameter array are added to and become a part of
+    the current array. 
     
 2. Does it edit the current array?
-    YES, the current array is editted.
+    NO, current array is not changed.
 
 3. What does it return?
-    The sort method returns the original array sorted according to the specified (or default if not specified) sort order.
+    The concat method returns a combination of the current array and the parameters added (individual items and arrays of items). 
 
 4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
-    We might have a list of countries that we need to sort by the number of customers our company has in each country. (Example with a function)
-    We might want to sort books in our library by alphabetical order
+    If a company downsizes and combines two teams into 1, a concat method can be used on the record of employees on each team.  In the 
+    example, the advertising and socialMedia teams are being combined into a marketing team.
 
 5. Build your real world example.
     See the example below.
 */
+
+var advertisingTeam = ["Susie", "Carlos", "Jeff"];
+var socialMediaTeam = ["Stephanie", "Kara", "George"];
+var marketingTeam = advertisingTeam.concat(socialMediaTeam);
+console.log(marketingTeam);
+
+/*
+The "forEach" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The forEach method executes a function "for-each" element of an array.  The parameters are 1. the callback function to be executed on each element of the array, and
+    2. the object to which "this" refers.
+    The callback function will take 3 optional parameters: 1. the value of the current element, the index of the current element, and the entire array we are working on.
+    Adding these additional parameters allows us to manipulate the data in more ways as we loop through each element.
+    
+2. Does it edit the current array?
+    The array is not necessarily changed, but it can be if changes are made to it durring the forEach execution.
+    As in:
+
+    myArray.forEach(function(value, index, array) {
+        array[index] = value + 2;
+    });
+
+3. What does it return?
+    There is no return value for the forEach method. 
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    There are many applications in which a forEach can be applied. One example would be to generate a sublist
+    of people who have certain attributes, so we can better understand a population.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var samplePopulation = [{
+        name: "Gary",
+        age: 67
+    },
+    {
+        name: "Harry",
+        age: 21
+    },
+    {
+        name: "Mary",
+        age: 74
+    },
+    {
+        name: "Barry",
+        age: 47
+    },
+    {
+        name: "Sherrie",
+        age: 34
+    }
+];
+
+var seniorCitizens = [];
+
+samplePopulation.forEach(function (value) {
+    if (value.age >= 65) {
+        seniorCitizens.push(value);
+    }
+
+});
+
+seniorCitizens.forEach(function (value) {
+    console.log(value.name);
+});
+
+/*
+The "includes" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The includes method searches the array for a certain element, and it returns true if the element exists in the array and false otherwise.
+    There are two parameters, one required, and one optional.
+    Required Parameter: Must include the item that you are searching for
+    Optional Parameter: The index from which to start searching. This defaults to 0.  If a negative index is used, the array will be searched starting with the 
+    index equal to (array.length - (number specified)), so if I put a -1, I will only check the last value of the array, if I put a -2 it will start with the last 
+    element of the array and work backwards towards the front checking the last then the second to last.
+    
+2. Does it edit the current array?
+    No, the current array remains the same.
+
+3. What does it return?
+    It returns true if the value is found, false if it is not found.
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    In a library, you might want to know if we have a certain book.  You would probably want to search by ISBN and by book title.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var universityLibrary = [{
+        title: "Hard Times",
+        author: "Charles Dickens",
+        ISBN: "9780486419206"
+    },
+    {
+        title: "The Odyssey",
+        author: "Homer",
+        ISBN: "9780140268867"
+    },
+    {
+        title: "Pride and Prejudice",
+        author: "Jane Austen",
+        ISBN: "0486284735"
+    },
+    {
+        title: "Much Ado About Nothing",
+        author: "William Shakespeare",
+        ISBN: "9780486282725"
+    }
+];
+
+function bookExistsSearchingByTitle(title) {
+    var titleArray = [];
+    universityLibrary.forEach(function (value) {
+        titleArray.push(value.title);
+    });
+    return titleArray.includes(title);
+}
+
+function bookExistsSearchingByISBN(ISBN) {
+    var ISBNArray = [];
+    universityLibrary.forEach(function (value) {
+        ISBNArray.push(value.ISBN);
+    });
+    return ISBNArray.includes(ISBN);
+}
+
+console.log("Do we have 'Hard Times'?: " + bookExistsSearchingByTitle('Hard Times'));
+console.log("Do we have book with ISBN 9780486282725?: " + bookExistsSearchingByISBN('9780486282725'));
+console.log("Do we have 'A Christmas Carol'?: " + bookExistsSearchingByTitle('A Christmas Carol'));
