@@ -127,3 +127,72 @@ function addNewEmployee(name) {
     employees.unshift(name);
 }
 addNewEmployee("Tracy");
+
+/*
+
+The "sort" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The sort method sorts the elements of the array.
+    You can use this method with no parameters: In which case, the sort method sorts the elements of the array in alphabetical
+    order (this includes numbers, numbers will be sorted as if they are strings of numbers as in 1, 5, 29 sorted as 1, 29, 5). 
+    You can use this method with a function parameter which teaches the sort method how to sort.  This function takes two parameters which are then used to
+    show how the list shoud be sorted.  
+    If the internal function returns a number less than 0, the item comes before the next item.
+    If the internal function returns a number greater than 0, the item comes after the next item.
+    If the interal function returns a '0', the item is equal to the next item.
+    
+2. Does it edit the current array?
+    YES, the current array is editted.
+
+3. What does it return?
+    The sort method returns the original array sorted according to the specified (or default if not specified) sort order.
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    We might have a list of countries that we need to sort by the number of customers our company has in each country. (Example with a function)
+    We might want to sort books in our library by alphabetical order
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var countriesWeDoBusinessIn = [{
+        name: "Japan",
+        numberOfCustomers: 20000
+    },
+    {
+        name: "U.S.",
+        numberOfCustomers: 30000
+    },
+    {
+        name: "China",
+        numberOfCustomers: 10000
+
+    },
+    {
+        name: "Mexico",
+        numberOfCustomers: 5000
+    } {
+        name: "Canada",
+        numberOfCustomers: 5000
+    }
+];
+
+//After the sort the order should be Canada, Mexico, China, Japan, U.S.
+
+countriesWeDoBusinessIn.sort(function (a, b) {
+    if (a.numberOfCustomers == b.numberOfCustomers) {
+        if (a.name.toUpperCase < b.name.toUpperCase)
+            return -1;
+        if (a.name.toUpperCase > b.name.toUpperCase)
+            return 1;
+        //The last case is the names are exactly the same
+        return 0;
+    }
+
+    return a.numberOfCustomers - b.numberOfCustomers;
+});
+
+for (var i = 0; i < countriesWeDoBusinessIn.length; i++) {
+    console.log("Sorted List: " + countriesWeDoBusinessIn[i].name + ", ");
+}
