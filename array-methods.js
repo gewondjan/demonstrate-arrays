@@ -414,3 +414,38 @@ var allWithinCorrectGpaRange = applicants.every(function (value) {
 });
 console.log("Were they all in the correct range?");
 console.log(allWithinCorrectGpaRange ? "YES" : "NO");
+
+/*
+The "every" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The some method determines if at least one element of an array meets a certain criteria determined by a callback function. The parameters are the callback function
+    defining what to check and an optional parameter is the object that we wish to refer to when using the "this" key word.
+    The parameters of the callback are as follows:
+    1. the value of the element in the array (this is required)
+    2. the index of the element in the array (this is optional)
+    3. the array itself (this is optional)
+
+2. Does it edit the current array?
+    No, the current array remains the same.
+
+3. What does it return?
+    It returns true if at least one value meets the conditions of the callback function and false otherwise.
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    Applicants are applying for an internship at a business you own before you go through your list of applications,
+    you are curious to know if there are any 4.0 students applying.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+//For this example, I will be using the list of applicants used in the example above.
+
+var perfectScoresExist = applicants.some(function (value) {
+    return value.gpa == 4.0;
+
+});
+
+console.log('Are there any applicants with a 4.0 gpa?');
+console.log(perfectScoresExist ? "YES" : "NO");
