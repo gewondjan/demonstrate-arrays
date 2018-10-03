@@ -73,11 +73,25 @@ The "shift" method
     YES, the current array is editted.
 
 3. What does it return?
-    The shift method returns the element that was shifted off of the array.
+    The shift method returns the element that was shifted off of the array, but if there is nothing on the array, the returned value is "undefined."
 
 4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
-    
+    Let's say there is a waitinglist for a certain apparment complex, we can maintain this list of people with a push and a shift.    
 
 5. Build your real world example.
     See the example below.
 */
+
+var waitingList = [];
+
+function addPersonToWaitingList(name, phoneNumber, email) {
+    waitingList.push({
+        name: name,
+        phoneNumber: phoneNumber,
+        email: email
+    });
+}
+
+function serveNextPersonFromWaitingList() {
+    return waitingList.shift();
+}
