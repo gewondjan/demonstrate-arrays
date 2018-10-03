@@ -363,3 +363,54 @@ function bookExistsSearchingByISBN(ISBN) {
 console.log("Do we have 'Hard Times'?: " + bookExistsSearchingByTitle('Hard Times'));
 console.log("Do we have book with ISBN 9780486282725?: " + bookExistsSearchingByISBN('9780486282725'));
 console.log("Do we have 'A Christmas Carol'?: " + bookExistsSearchingByTitle('A Christmas Carol'));
+
+
+/*
+The "every" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The every method determines if every element of an array meets a certain criteria determined by a callback function. The parameters are the callback function
+    defining what to check and an optional parameter is the object that we wish to refer to when using the "this" key word.
+    The parameters of the callback are as follows:
+    1. the value of the element in the array (this is required)
+    2. the index of the element in the array (this is optional)
+    3. the array itself (this is optional)
+
+2. Does it edit the current array?
+    No, the current array remains the same.
+
+3. What does it return?
+    It returns true if every value meets the conditions of the callback function and false otherwise.
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    Applicants are applying for an internship at a business you own before you go through your list of applications,
+    you want to make sure that all applicants have followed the guidelines and have a gpa in a certain region.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var applicants = [{
+        name: "Zachary",
+        gpa: 4.0
+    },
+    {
+        name: "Henry",
+        gpa: 3.5
+    },
+    {
+        name: "John",
+        gpa: 3.68
+    },
+    {
+        name: "Martha",
+        gpa: 3.91
+    }
+
+];
+//Here the correct gpa range is being defined as 3.5 - 4.0
+var allWithinCorrectGpaRange = applicants.every(function (value) {
+    return value.gpa >= 3.5;
+});
+console.log("Were they all in the correct range?");
+console.log(allWithinCorrectGpaRange ? "YES" : "NO");
