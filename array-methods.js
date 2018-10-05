@@ -418,7 +418,7 @@ console.log("Were they all in the correct range?");
 console.log(allWithinCorrectGpaRange ? "YES" : "NO");
 
 /*
-The "every" method
+The "some" method
 
 1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
     The some method determines if at least one element of an array meets a certain criteria determined by a callback function. The parameters are the callback function
@@ -451,3 +451,52 @@ var perfectScoresExist = applicants.some(function (value) {
 
 console.log('Are there any applicants with a 4.0 gpa?');
 console.log(perfectScoresExist ? "YES" : "NO");
+
+
+/*
+The "filter" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The filter method takes as a parameter a callback function which contains some sort of boolean expression which acts as a filter for the array, and returns
+    a new array with all the elements of the original array which satisfy that boolean expression.
+    The filter method has another optional parameter and that is the object we want to refer to with the "this" keyword.
+    The callback function has 3 parameters.
+    1. the value of the item in the array (required)
+    2. The index of the item in the array (optional)
+    3. The array itself (optional)
+
+2. Does it edit the current array?
+    No, the current array remains the same.
+
+3. What does it return?
+    It returns the filtered array.
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    I might have a list of teachers and want to know which teachers are only teaching one class.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var teachers = [{
+        name: "Mr. Smith",
+        numberOfClasses: 1
+    },
+    {
+        name: "Mrs. Gold",
+        numberOfClasses: 4
+    },
+    {
+        name: "Mr. Awesome",
+        numberOfClasses: 10
+    } {
+        name: "Mrs. Teacher",
+        numberOfClasses: 1
+    }
+];
+
+var teachingOnlyOneClass = teachers.filter(function (teacher) {
+    return teacher.numberOfClasses == 1;
+});
+
+console.log(teachingOnlyOneClass);
