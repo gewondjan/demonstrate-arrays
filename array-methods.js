@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /*
 
 The "push" method
