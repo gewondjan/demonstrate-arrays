@@ -489,7 +489,8 @@ var teachers = [{
     {
         name: "Mr. Awesome",
         numberOfClasses: 10
-    } {
+    },
+    {
         name: "Mrs. Teacher",
         numberOfClasses: 1
     }
