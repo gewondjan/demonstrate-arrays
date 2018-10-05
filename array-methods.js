@@ -675,27 +675,33 @@ var sentance = text.reduce(function (accumulator, word) {
 console.log(sentance);
 
 /*
-The "slice/splice" methods
+The "slice" method
 
 1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
-    The reduce function takes an array and computes an output based on the callback function parameter.
-    The parameters include a callback function and an optional intital value input.  The intial value input acts as the starting point for the accumulator in the callback function.
-    The callback function has 4 possible parameters:
-    1. the accumulator can start as the initial value, but otherwise it is the returned value from the last run of the callback function (required)
-    2. the current value is the current value we are working with in the array (required)
-    3. the current index is the index of the current value we are working with in the array (optional)
-    4. the array itself (optional)
+    The slice method creates a subarray from the original array.  It takes two parameters.
+    The first parameter is the index from which to start the extraction. (optional)
+    The second parameter is the index that will be just 1 outside of the extraction. (optional)
+
 
 2. Does it edit the current array?
     No, the current array remains the same.
 
 3. What does it return?
-    It returns the calculated value
+    It returns the extracted array.
 
 4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
-    I might be running a food drive and want to sum up the pounds of food donated (will use accumulator).
-    OR, I might have an array of text that I want to put all together into one string.
+    I might have a list of studnets and want to break them up into groups.  I could slice the original array to accomplish this.
 
 5. Build your real world example.
     See the example below.
 */
+
+var studentsToBreakIntoGroups = ["nicki", "jeff", "greg", "chris", "savanah", "esther", "maria", "tommy", "roy"];
+var groups = [];
+groups[0] = studentsToBreakIntoGroups.slice(0, 3);
+groups[1] = studentsToBreakIntoGroups.slice(3, 6);
+groups[2] = studentsToBreakIntoGroups.slice(6);
+
+groups.forEach(function (group) {
+    console.log(group);
+});
