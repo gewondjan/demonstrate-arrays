@@ -600,3 +600,102 @@ var updatedDatabaseRecords = StudentDatabaseAllSemesters.map(function (student) 
 updatedDatabaseRecords.forEach(function (student) {
     console.log("Name: " + student.name + " gpa: " + student.gpa.toPrecision(4) + " credits: " + student.accumulatedCredits);
 });
+
+/*
+The "reduce" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The reduce function takes an array and computes an output based on the callback function parameter.
+    The parameters include a callback function and an optional intital value input.  The intial value input acts as the starting point for the accumulator in the callback function.
+    The callback function has 4 possible parameters:
+    1. the accumulator can start as the initial value, but otherwise it is the returned value from the last run of the callback function (required)
+    2. the current value is the current value we are working with in the array (required)
+    3. the current index is the index of the current value we are working with in the array (optional)
+    4. the array itself (optional)
+
+2. Does it edit the current array?
+    No, the current array remains the same.
+
+3. What does it return?
+    It returns the calculated value
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    I might be running a food drive and want to sum up the pounds of food donated (will use accumulator).
+    OR, I might have an array of text that I want to put all together into one string.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+//Example with a starting accumulator
+var donationsStationA = [{
+        name: "ryan",
+        foodInPounds: 30
+    },
+    {
+        name: "gabe",
+        foodInPounds: 10
+    },
+    {
+        name: "alfred",
+        foodInPounds: 23
+    }
+];
+
+var donationsStationB = [{
+        name: "vicky",
+        foodInPounds: 4
+    },
+    {
+        name: "bruce",
+        foodInPounds: 16
+    },
+    {
+        name: "stephanie",
+        foodInPounds: 23
+    }
+];
+
+var poundsOfFoodBeforeDrive = 500;
+
+
+var totalPounds = donationsStationB.reduce(function (total, currentDonation) {
+    return total + currentDonation.foodInPounds;
+}, donationsStationA.reduce(function (total, currentDonation) {
+    return total + currentDonation.foodInPounds;
+}, poundsOfFoodBeforeDrive));
+
+console.log(totalPounds); //should be 606
+
+//Example without a starting accumulator
+var text = ["And", "it", "came", "to", "pass", "that", "I", "Nephi", "said", "unto", "my", "Father", "I", "will", "go", "and", "do"];
+var sentance = text.reduce(function (accumulator, word) {
+    return accumulator + " " + word;
+});
+console.log(sentance);
+
+/*
+The "slice/splice" methods
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The reduce function takes an array and computes an output based on the callback function parameter.
+    The parameters include a callback function and an optional intital value input.  The intial value input acts as the starting point for the accumulator in the callback function.
+    The callback function has 4 possible parameters:
+    1. the accumulator can start as the initial value, but otherwise it is the returned value from the last run of the callback function (required)
+    2. the current value is the current value we are working with in the array (required)
+    3. the current index is the index of the current value we are working with in the array (optional)
+    4. the array itself (optional)
+
+2. Does it edit the current array?
+    No, the current array remains the same.
+
+3. What does it return?
+    It returns the calculated value
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    I might be running a food drive and want to sum up the pounds of food donated (will use accumulator).
+    OR, I might have an array of text that I want to put all together into one string.
+
+5. Build your real world example.
+    See the example below.
+*/
