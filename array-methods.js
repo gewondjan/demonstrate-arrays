@@ -500,4 +500,103 @@ var teachingOnlyOneClass = teachers.filter(function (teacher) {
     return teacher.numberOfClasses == 1;
 });
 
-console.log(teachingOnlyOneClass);
+teachingOnlyOneClass.forEach(function (teacher) {
+    console.log(teacher.name);
+});
+
+
+/*
+The "map" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The map method creates an array in which each element has been updated by a certain callback fuction.
+    Parameters:
+    1. Callback function with callback function parameters: 1. element of the array (required), 2. index of the element in the array (optional), 3. the array itself (optional)
+    2. What we mean when we use the "this" key word (optional).
+
+2. Does it edit the current array?
+    No, the current array remains the same.
+
+3. What does it return?
+    It returns the updated array.
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    I might want to update a student database with updated gpas after the semester ends.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var StudentDatabaseAllSemesters = [{
+        id: 123456789,
+        name: "bobby",
+        gpa: 3.5,
+        accumulatedCredits: 100
+    },
+    {
+        id: 2345678891,
+        name: "beth",
+        gpa: 3.8,
+        accumulatedCredits: 34
+    },
+    {
+        id: 345678912,
+        name: "nate",
+        gpa: 2.9,
+        accumulatedCredits: 78
+    },
+    {
+        id: 456789123,
+        name: "ryan",
+        gpa: 3.9,
+        accumulatedCredits: 23
+    }
+];
+
+var studentDatabaseThisSemester = [{
+        id: 123456789,
+        name: "bobby",
+        gpa: 2.9,
+        credits: 17
+    },
+    {
+        id: 2345678891,
+        name: "beth",
+        gpa: 3.5,
+        credits: 12
+    },
+    {
+        id: 345678912,
+        name: "nate",
+        gpa: 4.0,
+        credits: 11
+    },
+    {
+        id: 456789123,
+        name: "ryan",
+        gpa: 3.2,
+        credits: 16
+    }
+];
+
+
+var updatedDatabaseRecords = StudentDatabaseAllSemesters.map(function (student) {
+    var studentThisSemester = studentDatabaseThisSemester.find(function (thisSemesterStudent) {
+        return thisSemesterStudent.id == student.id;
+    });
+
+    var updatedGpa = (student.accumulatedCredits * student.gpa + studentThisSemester.gpa * studentThisSemester.credits) / (studentThisSemester.credits + student.accumulatedCredits);
+    var updatedCredits = studentThisSemester.credits + student.accumulatedCredits;
+
+    var newStudent = {
+        id: student.id,
+        name: student.name,
+        gpa: updatedGpa,
+        accumulatedCredits: updatedCredits
+    };
+    return newStudent;
+});
+
+updatedDatabaseRecords.forEach(function (student) {
+    console.log("Name: " + student.name + " gpa: " + student.gpa.toPrecision(4) + " credits: " + student.accumulatedCredits);
+});
