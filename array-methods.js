@@ -681,6 +681,7 @@ The "slice" method
     The slice method creates a subarray from the original array.  It takes two parameters.
     The first parameter is the index from which to start the extraction. (optional)
     The second parameter is the index that will be just 1 outside of the extraction. (optional)
+    (To sum it up, the first parameter value is included, and the last value is not included) [x, y)
 
 
 2. Does it edit the current array?
@@ -705,3 +706,64 @@ groups[2] = studentsToBreakIntoGroups.slice(6);
 groups.forEach(function (group) {
     console.log(group);
 });
+
+/*
+The "splice" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The splice method can remove elements from an array and/or add new elements to any location in the array.  If I needed to replace a list of elements in the array
+    with a new list of items for a certain part of the array, the splice method would be a good option.
+    The parameters are:
+    1. A start value, the place in the array to start at
+    2. the number of elements to delete from the start place (optional, but if not included all elements from start to the end of the array will be deleted)
+    3. a single item or list of items to add to the array at the start place (optional)
+
+2. Does it edit the current array?
+    YES
+
+3. What does it return?
+    An array of the deleted values
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    You might be running a local restaurant and an employee wants to come in for work in the place of another employee
+    To update the schedule, you could use a splice
+
+5. Build your real world example.
+    See the example below.
+*/
+
+var shift1 = ['bob', 'barry', 'barbara', 'becky', 'beth', 'brandon'];
+console.log(shift1);
+
+function substitute(employeeOff, employeeFillingIn, workShift) {
+    workShift.splice(workShift.indexOf(employeeOff), 1, employeeFillingIn);
+}
+substitute('barry', 'brenda', shift1);
+console.log(shift1);
+console.log('brenda should have replaced barry');
+
+/*
+The "entries" method
+
+1. What does it do? make sure to explain all the parameters. If it has a function as a parameter, make sure to explain all of the parameters for that function.
+    The entries puts all the elements in the array into an iterator object.
+
+2. Does it edit the current array?
+    No
+
+3. What does it return?
+    An iterator full of values which consist of mini two dimentional arrays with the index of the original array and the value of the original array as inputs
+
+4. How can I use this? Come up (not one off the internet) with a small real world example and explain it.
+    I might be debuging some code, and want to see an entire picture of the array, so I could put the array into an iterator and display keys with values.
+
+5. Build your real world example.
+    See the example below.
+*/
+
+//using the shift1 array from the last example
+var myIterator = shift1.entries();
+
+for (let element of myIterator) {
+    console.log(element);
+}
